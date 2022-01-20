@@ -13,5 +13,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [TodolistController::class]);
+Route::get('/', function() {
+    return view('welcome');
 });
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+/*
+Route::get('/home', [TodolistController::class, 'index'])->name('home');
+Route::post('/home', [TodolistController::class, 'store'])->name('store');
+Route::delete('/home{todolist:id}', [TodolistController::class, 'destroy'])->name('destroy');*/
+
