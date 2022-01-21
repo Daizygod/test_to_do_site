@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\TodolistController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,8 +20,8 @@ Route::get('/', function() {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-/*
-Route::get('/home', [TodolistController::class, 'index'])->name('home');
-Route::post('/home', [TodolistController::class, 'store'])->name('store');
-Route::delete('/home{todolist:id}', [TodolistController::class, 'destroy'])->name('destroy');*/
+
+Route::get('/', [TodolistController::class, 'index'])->name('home');
+Route::post('/', [TodolistController::class, 'store'])->name('store');
+Route::delete('/{todolist:id}', [TodolistController::class, 'destroy'])->name('destroy');
 
