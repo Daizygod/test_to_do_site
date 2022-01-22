@@ -22,6 +22,22 @@
                     <button type="submit" class="btn btn-dark btn-sm px-4"><i class="fas fa-plus"></i></button>
                 </div>
                 </form>
+                <!-- if tasks count -->
+                @if (count($todolists))
+                    <ul>
+                        @foreach ($todolists as $todolist)
+                        
+                            <li class="list-group-item">
+                                <form action="{{ route('destroy', $todolist->id) }}" method="POST">
+                                    @csrf
+                                    @method('delete')
+                                    <button type="submit" class="btn btn-link btn-sm float-end"><i class="fas fa-trash"></i></button>
+                                </form>
+                            </li>
+                            
+                        @endforeach
+                    </ul>
+                @endif
             </div>
         </div>
     </div>                    

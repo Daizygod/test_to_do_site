@@ -11,7 +11,7 @@ class TodolistController extends Controller
     public function index()
     {
         $todolists = Todolist::all();
-        return view('home2', compact('todolists'));
+        return view('todomain', compact('todolists'));
     }
 
     public function create()
@@ -21,11 +21,19 @@ class TodolistController extends Controller
 
     public function store(Request $request)
     {
+        // Validate string texted by user
         $data = $request->validate([
             'content' => 'required'
         ]);
-
-        Todolist::create($data);
+        // add default data in array
+        $datalist = [
+        "user_id" => 12,
+        "content" => $data['content'],
+        "status" => "TEST",
+        "deleted" => "TEST",
+        ];
+        // create records to db
+        Todolist::create($datalist);
         return back();
     }
 
@@ -46,6 +54,7 @@ class TodolistController extends Controller
 
     public function destroy(Todolist $todolist)
     {
+        $todolist = substr($todolist, 7);
         $todolist->delete();
         return back(); 
     }
