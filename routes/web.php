@@ -21,7 +21,7 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/', [TodolistController::class, 'index'])->name('home');
-Route::post('/', [TodolistController::class, 'store'])->name('store');
-Route::delete('/{todolist:id}', [TodolistController::class, 'destroy'])->name('destroy');
+Route::get('/todomain', [App\Http\Controllers\TodolistController::class, 'index'])->name('home');
+Route::post('/todomain', [App\Http\Controllers\TodolistController::class, 'store'])->name('store');
+Route::delete('/todomain{todolist:id}', [App\Http\Controllers\TodolistController::class, 'destroy'])->name('destroy');
 
