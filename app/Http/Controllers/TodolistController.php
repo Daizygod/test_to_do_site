@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Todolist;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class TodolistController extends Controller
@@ -11,7 +12,8 @@ class TodolistController extends Controller
     public function index()
     {
         $todolists = Todolist::all();
-        return view('todomain', compact('todolists'));
+        //return view('todomain', compact('todolists'));
+        return view('home', compact('todolists'));
     }
 
     public function create()
@@ -27,7 +29,7 @@ class TodolistController extends Controller
         ]);
         // add default data in array
         $datalist = [
-        "user_id" => 12,
+        "user_id" => Auth::id(),
         "content" => $data['content'],
         "status" => "TEST",
         "deleted" => "TEST",
@@ -54,7 +56,6 @@ class TodolistController extends Controller
 
     public function destroy(Todolist $todolist)
     {
-        $todolist = substr($todolist, 7);
         $todolist->delete();
         return back(); 
     }

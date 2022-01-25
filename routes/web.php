@@ -20,8 +20,10 @@ Route::get('/', function() {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
+/*
 Route::get('/todomain', [App\Http\Controllers\TodolistController::class, 'index'])->name('home');
 Route::post('/todomain', [App\Http\Controllers\TodolistController::class, 'store'])->name('store');
-Route::delete('/todomain{todolist:id}', [App\Http\Controllers\TodolistController::class, 'destroy'])->name('destroy');
-
+Route::delete('/todomain{todolist:id}', [App\Http\Controllers\TodolistController::class, 'destroy'])->name('destroy');*/
+Route::get('/home', [App\Http\Controllers\TodolistController::class, 'index'])->name('home');
+Route::post('/home', [App\Http\Controllers\TodolistController::class, 'store'])->name('store');
+Route::delete('/home{todolist:id}', [App\Http\Controllers\TodolistController::class, 'destroy'])->name('destroy');

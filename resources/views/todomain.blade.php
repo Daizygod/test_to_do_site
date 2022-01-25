@@ -24,11 +24,12 @@
                 </form>
                 <!-- if tasks count -->
                 @if (count($todolists))
-                    <ul>
+                    <ul class="list-group list-group-flush mt-3">
                         @foreach ($todolists as $todolist)
                         
                             <li class="list-group-item">
                                 <form action="{{ route('destroy', $todolist->id) }}" method="POST">
+                                    {{ $todolist->content }}
                                     @csrf
                                     @method('delete')
                                     <button type="submit" class="btn btn-link btn-sm float-end"><i class="fas fa-trash"></i></button>
@@ -37,8 +38,15 @@
                             
                         @endforeach
                     </ul>
+                @else
+                <p class="text-center mt-3">No Tasks!</p>
                 @endif
             </div>
+            @if (count($todolists))
+                <div class="card-footer">
+                    You have {{ count($todolists) }} tasks
+                </div>
+            @endif
         </div>
     </div>                    
 </body>
